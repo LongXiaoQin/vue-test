@@ -7,14 +7,21 @@
 </head>
 <body>
   <div id="app">
-
+    <template v-for="(item, key) of userInfo">
+        <div >
+            {{item}}
+        </div>
+        <div >
+            {{key}}
+        </div>
+    </template>
   </div>
   <script>
     var vm = new Vue({
-      el: "el",
+      el: "#app",
       data: {
         userInfo: {
-          name: "sheery",
+          name: "sherry",
           age: 25,
           gender: "male",
           salary: "secret"
