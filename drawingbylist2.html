@@ -17,6 +17,9 @@
     </template>
   </div>
   <script>
+  // 使用以下方法变更数组才能实时更新页面
+  // 1.修改list引用 vm.userInfo = {name: "sherry",age: 25,gender: "male",salary: "secret"}
+  // 2.Vue.set(vm.userInfo, "name", "chean")或者vm.$set(vm.userInfo, "name", "chean")
     var vm = new Vue({
       el: "#app",
       data: {

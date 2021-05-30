@@ -15,6 +15,7 @@
       // 使用以下方法变更数组才能实时更新页面
       // 1.push  pop  shift   unshift   splice  sort reverse
       // 2.修改list引用 vm.list = [{id: "1", text: "hello"}]
+      // 3.Vue.set(vm.list, 0, {id: "2", text: "!"})或者vm.$set(vm.list, 0, {id: "2", text: "!"})
     var vm = new Vue({
       el: "#app",
       data: {
