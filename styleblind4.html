@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式绑定-style-数组</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div @click="handleDivClick"
+          :style="[styleObj, fontObj]"
+    >
+      Hello world
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        styleObj: {
+          color: "black"
+        },
+        fontObj: {
+          fontSize: "20px"
+        }
+      },
+      methods: {
+        handleDivClick: function () {
+          this.styleObj.color = this.styleObj.color === "black" ? "red" : "black"
+          this.fontObj.fontSize = this.fontObj.fontSize === "40px" ? "20px" : "40px"
+        }
+      }
+    })
+  </script>
+</body>
+</html>

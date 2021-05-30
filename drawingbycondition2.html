@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加key值才能改变清除input框</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-if="show" key="username">用户名：<input /></div>
+    <div v-else key="password">密码：<input /></div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+          show: true
+      }
+    })
+  </script>
+</body>
+</html>
