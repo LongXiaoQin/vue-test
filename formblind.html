@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的表单绑定</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+<!--      可用于数据绑定的组件：
+          1.input
+          2.textarea
+          3.checkbox
+          4.radio
+          5.select
+          可用于v-model的修饰符：
+          1.lazy   失去焦点时，刷新
+          2.number   尝试将输入值转成number
+          3.trim    去掉首尾空格
+-->
+    <div>
+        <input v-model="value1">
+        {{value1}}
+        <textarea v-model="value2"></textarea>
+        {{value2}}
+        <input type="checkbox" v-model="value3">
+        {{value3}}
+        <input type="radio" v-model="value4" value="test">
+        {{value4}}
+        <select v-model="value5">
+            <option disabled>--请选择--</option>
+            <option value="1">A</option>
+            <option value="2">B</option>
+            <option value="3">C</option>
+        </select>
+        {{value5}}
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            value1: "",
+            value2: "",
+            value3: "",
+            value4: "",
+            value5: "",
+        }
+    })
+  </script>
+</body>
+</html>
