@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的事件处理-事件修饰符</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <button @click="handleButtonClick($event, 1, 2)">Button</button>
+<!--      事件修饰符-->
+<!--      prevent：阻止系统默认行为-->
+<!--      stop：阻止冒泡-->
+<!--      self：只有点击当前元素才执行-->
+<!--      capture：遵循捕获规则，从外部到内部-->
+      <form action="/abc" @click.prevent>
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      methods: {
+        handleButtonClick: function (e, one, two) {
+          console.log(e, one, two)
+      }}
+    })
+  </script>
+</body>
+</html>

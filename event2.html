@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的事件处理-按键修饰符、系统修饰符、鼠标修饰符</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+<!--      enter键点击时，才会执行-->
+    <input @keydown.enter="handleKeyDown">
+<!--      delete键点击时，才会执行-->
+    <input @keydown.delete="handleKeyDown">
+<!--      鼠标修饰符-->
+    <input @keydown.right="handleKeyDown">
+<!--      系统修饰符-->
+    <input @keydown.ctrl="handleKeyDown">
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      methods: {
+          handleKeyDown : function (e) {
+              console.log(e.target.value)
+          }
+      }
+    })
+  </script>
+</body>
+</html>
