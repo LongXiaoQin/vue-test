@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件使用中的细节</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+     <div>
+        <table>
+          <tbody>
+    <!--        1.使用is保证语法符合H5，并且能正常运行组件；（ul、select、ol有同样情况）-->
+            <tr is="row"></tr>
+          </tbody>
+        </table>
+<!--         3.通过ref引用获取内容-->
+        <counter ref="one" @change="handleChange"></counter>
+        <counter ref="two" @change="handleChange"></counter>
+        <div>{{sum}}</div>
+     </div>
+  </div>
+
+  <script>
+    Vue.component('row', {
+      // 2.在子组件中定义data时，必须是一个函数，不能是一个对象
+      data: function () {
+        return {
+          content: "this is a row"
+        }
+      },
+      template: '<tr><td> {{content}}</td></tr>'
+    })
+    Vue.component('counter', {
+      data: function () {
+        return {
+          number: 0
+        }
+      },
+      template: '<div @click="handleClick">{{number}}</div>',
+      methods: {
+        handleClick: function () {
+          this.number ++
+          this.$emit('change')
+        }
+      }
+    })
+    var vm = new Vue({
+      el: "#app",
+        data: {
+          sum: 0
+        },
+        methods: {
+            handleChange: function (){
+                this.sum = this.$refs.one.number + this.$refs.two.number
+            }
+        }
+    })
+  </script>
+</body>
+</html>
