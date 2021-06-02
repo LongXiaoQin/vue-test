@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件的数据传递</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+<!--        1.父组件通过属性向子组件传值，加：表示引号中是JS表达式，不加：则表示为字符串-->
+        <counter :count="0" @change="handleChange"></counter>
+        <counter :count="0" @change="handleChange"></counter>
+        <div>{{total}}</div>
+    </div>
+    <script>
+        var counter = {
+            // 2.子组件通过props接收从父组件传过来的值
+            props: ['count'],
+            data: function () {
+                return {
+                    number: this.count
+                }
+            },
+            template: "<div @click='handleClick'>{{number}}</div>",
+            methods: {
+                handleClick: function () {
+                    // 3.子组件不能直接修改从父组件传过来的值（this.count）
+                    this.number = this.number + 2
+                    // 4.子组件通过触发事件向父组件传值
+                    this.$emit("change", 2)
+                }
+            }
+        }
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                total: 0
+            },
+            methods: {
+                handleChange: function (step) {
+                    this.total += step
+                }
+            },
+            // 注册局部组件
+            components: {
+                counter: counter
+            }
+        })
+    </script>
+</body>
+</html>
