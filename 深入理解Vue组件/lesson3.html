@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件参数校验与非props特性</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child content="hello world"></child>
+    </div>
+    <script>
+            // props特性：要求父组件传，子组件使用props接收
+<!--        props特性：1.dom标签不显示（content="hello world"）2.模版中可使用差值表达式使用该变量-->
+        //  非props特性：1.dom标签显示（content="hello world"）2.模版中不可使用差值表达式使用该变量
+        Vue.component('child', {
+            // 1. props: ['content'],
+            // 2.props: {
+            //     content: [String, Number]
+            // },
+            props: {
+                content: {
+                    type: String,
+                    required: false,  // 是否必须传
+                    default: "hello world",
+                    validator: function (value) {
+                        return (value.length > 5)
+                    }
+                }
+            },
+            template: '<div>{{content}}</div>'
+        })
+
+        var vm = new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+</html>
