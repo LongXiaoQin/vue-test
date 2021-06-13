@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在Vue中同时使用过渡和动画</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../animate.css">
+    <style>
+    .fade-enter,.fade-leave-to{
+        opacity: 0;
+    }
+    .fade-enter-active,.fade-leave-active{
+        transition: opacity 3s;
+    }
+    </style>
+</head>
+<body>
+<!--1.type="transition" 以过渡效果时长为准
+    2.:duration="10000" 时长为10000毫秒
+    3.:duration="{enter: 5000, leave: 10000}"-->
+  <div id="root">
+    <transition
+            name="fade"
+            :duration="{enter: 5000, leave: 10000}"
+            enter-active-class="animated swing fade-enter-active"
+            leave-active-class="animated shake fade-leave-active"
+            appear-active-class="animated swing">
+      <div v-if="show">hell world</div>
+    </transition>
+    <button @click="handleClick">toggle</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#root",
+      data: {
+        show: true
+      },
+      methods: {
+        handleClick: function () {
+          this.show = !this.show
+        }
+      }
+    })
+  </script>
+</body>
+</html>
